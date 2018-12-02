@@ -10,6 +10,11 @@ import UIKit
 
 class HomeVc: UIViewController {
     
+    
+    // global variable
+    
+   
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,14 +23,18 @@ class HomeVc: UIViewController {
         // Purpose : When user click inputfiled button automatically        come up with keypad.
         
         let calculateButton = UIButton(frame: CGRect(x: 0, y: 0, width: view.frame.size.width , height: 60 ))
-        calculateButton.backgroundColor = #colorLiteral(red: 0.3106094301, green: 0.6536671519, blue: 0.5751567483, alpha: 1)
+        calculateButton.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         calculateButton.setTitle("Calculate", for: .normal)
+        
+        calculateButton.setTitleColor( #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0) , for: .normal )
         calculateButton.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         
         amountEntered.inputAccessoryView = calculateButton
         
         
+        setUPViews()
         
+        setThem(isDark: false)
         
     
         // Do any additional setup after loading the view.
@@ -60,7 +69,9 @@ class HomeVc: UIViewController {
     
     @IBOutlet var tiIBOUTLET: UILabel!
     
-    @IBOutlet var seltedTipIBOutlet: UISegmentedControl!
+    @IBOutlet weak var seletedTipIBOutlet: UISegmentedControl!
+    
+ 
     
     @IBOutlet var tipAmountIBOutlet: UILabel!
     
@@ -78,24 +89,91 @@ class HomeVc: UIViewController {
     
     // = = = = = = = = UIButtons and UISwitch IBActions = = =  = = = = = = = = = = = =  =
     
-   
-    
-    
-    
-    @IBAction func switch_ON_OFF(_ sender: Any) {
+    func setThem(isDark: Bool) {
         
-        if switchIBOutlet.isOn {
-            print("ON")
-        } else {
-            print("OFF")
+        
+        UIView.animate(withDuration: 0.5) {
+            self
+        
+        
+        let theme = isDark ? ColorTheme.dark : ColorTheme.light
+        
+        //header
+         self.view.backgroundColor = theme.viewControllerBg
+        self.headerUIView.backgroundColor = theme.headerBG
+        self.tipCalculatorLable.textColor = theme.textsColor
+        
+        //input
+        self.inputUIView.backgroundColor = theme.inPutView
+        self.billAmountIBOUTLET.textColor = theme.textsColor
+        self.tiIBOUTLET.textColor = theme.textsColor
+        self.seletedTipIBOutlet.tintColor = theme.tint
+        
+        //output
+        self.outputUIView.backgroundColor = theme.outPutView
+       self.outputUIView.layer.borderColor = theme.cgColor
+        self.tipAmountIBOutlet.textColor = theme.textsColor
+        self.tipAmount_AmountLabel.textColor = theme.textsColor
+        self.totalIBOutlet.textColor = theme.textsColor
+        self.totalLabel_Label.textColor = theme.textsColor
+        
+        
+        //button
+        self.resetButtonOutlet.backgroundColor = theme.buttonsBG
+        
         }
+   
         
     }
     
     
     
-  
+    @IBAction func switch_ON_OFF(_ sender: UISwitch) {
+        
+        setThem(isDark: sender.isOn)
+        
+        
+        
+       
+    }
+    
+    
+    
+
+    
+    
+    
+    
+    func setUPViews() {
+        
+        //inputput layouts
+        
+        inputUIView.layer.cornerRadius = 10
+        inputUIView.layer.masksToBounds = true
+        
+        
+        //output layouts
+        
+        outputUIView.layer.cornerRadius = 10
+        outputUIView.layer.borderWidth = 1
+        outputUIView.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        outputUIView.layer.masksToBounds = true
+        
+        
+        //resetbutton layoutStyling
+        
+        resetButtonOutlet.layer.cornerRadius = 10
+        resetButtonOutlet.layer.shadowColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+        resetButtonOutlet.layer.shadowOpacity = 50
+        resetButtonOutlet.layer.shadowOffset = CGSize(width: 5, height: 5)
+        
+        
+    }
+    
+    
+    
     // programmatic UIButton action call
+    
     
      @objc func buttonAction(sender: UIButton!) {
         
@@ -115,7 +193,7 @@ class HomeVc: UIViewController {
       
         let tipPercent: Double
         
-        switch seltedTipIBOutlet.selectedSegmentIndex {
+        switch seletedTipIBOutlet.selectedSegmentIndex {
         case 0:
             tipPercent = 0.15
             break
@@ -152,9 +230,9 @@ class HomeVc: UIViewController {
     func clear () {
         
         self.amountEntered.text = nil
-        self.seltedTipIBOutlet.selectedSegmentIndex = 0
-        self.tipAmountIBOutlet.text = "$ 0.00"
-        self.totalIBOutlet.text = "$ 0.00"
+        self.seletedTipIBOutlet.selectedSegmentIndex = 0
+        self.tipAmount_AmountLabel.text = "$ 0.00"
+        self.totalLabel_Label.text = "$ 0.00"
         
     }
     
