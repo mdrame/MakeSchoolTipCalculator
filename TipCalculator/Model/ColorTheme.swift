@@ -22,7 +22,7 @@ struct ColorTheme {
     let cgColor: CGColor
     
     
-    
+    // instance of light
     static let light = ColorTheme(viewControllerBg: #colorLiteral(red: 0.874435842, green: 0.8745587468, blue: 0.8743969798, alpha: 1),
                                   headerBG: #colorLiteral(red: 0.9489397407, green: 0.9490725398, blue: 0.948897779, alpha: 1),
                                   inPutView: #colorLiteral(red: 0.362932086, green: 0.8170687556, blue: 0.7171010375, alpha: 1),
@@ -35,7 +35,7 @@ struct ColorTheme {
     
     
     
-    
+    // instance of dark
     static let dark = ColorTheme(viewControllerBg: #colorLiteral(red: 0.1638008952, green: 0.1679961979, blue: 0.2131763697, alpha: 1),
                                  headerBG: #colorLiteral(red: 0.2747620213, green: 0.2819551292, blue: 0.3612172961, alpha: 1),
                                  inPutView: #colorLiteral(red: 0.09910773187, green: 0.1017023139, blue: 0.1302924864, alpha: 1),

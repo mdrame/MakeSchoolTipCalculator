@@ -13,9 +13,9 @@ class HomeVc: UIViewController {
     
     // global variable
     
-   
     
-
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -36,7 +36,7 @@ class HomeVc: UIViewController {
         
         setThem(isDark: false)
         
-    
+        
         // Do any additional setup after loading the view.
     }
     
@@ -48,9 +48,7 @@ class HomeVc: UIViewController {
     // = = = = = = = =  UIViews IBOutlets  = = = = = = = = = = =
     
     @IBOutlet weak var headerUIView: UIView!
-    
     @IBOutlet weak var inputUIView: UIView!
-    
     @IBOutlet weak var outputUIView: UIView!
     
     
@@ -58,34 +56,18 @@ class HomeVc: UIViewController {
     // = = = = = = = =  UILabels, UISwitch &  UIButtons IBOUTLETS = = = = = = = = = = =
     
     @IBOutlet weak var switchIBOutlet: UISwitch!
-    
-    
     @IBOutlet weak var tipCalculatorLable: UILabel!
-    
     @IBOutlet var billAmountIBOUTLET: UILabel!
-    
-    
     @IBOutlet var amountEntered: UITextField!
-    
     @IBOutlet var tiIBOUTLET: UILabel!
-    
     @IBOutlet weak var seletedTipIBOutlet: UISegmentedControl!
-    
- 
-    
     @IBOutlet var tipAmountIBOutlet: UILabel!
-    
     @IBOutlet var tipAmount_AmountLabel: UILabel!
-    
     @IBOutlet var totalIBOutlet: UILabel!
-    
     @IBOutlet var totalLabel_Label: UILabel!
-    
     @IBOutlet weak var resetButtonOutlet: UIButton!
     
-    
-    
-    
+
     
     // = = = = = = = = UIButtons and UISwitch IBActions = = =  = = = = = = = = = = = =  =
     
@@ -93,53 +75,50 @@ class HomeVc: UIViewController {
         
         
         UIView.animate(withDuration: 0.5) {
-            self
-        
-        
-        let theme = isDark ? ColorTheme.dark : ColorTheme.light
-        
-        //header
-         self.view.backgroundColor = theme.viewControllerBg
-        self.headerUIView.backgroundColor = theme.headerBG
-        self.tipCalculatorLable.textColor = theme.textsColor
-        
-        //input
-        self.inputUIView.backgroundColor = theme.inPutView
-        self.billAmountIBOUTLET.textColor = theme.textsColor
-        self.tiIBOUTLET.textColor = theme.textsColor
-        self.seletedTipIBOutlet.tintColor = theme.tint
-        
-        //output
-        self.outputUIView.backgroundColor = theme.outPutView
-       self.outputUIView.layer.borderColor = theme.cgColor
-        self.tipAmountIBOutlet.textColor = theme.textsColor
-        self.tipAmount_AmountLabel.textColor = theme.textsColor
-        self.totalIBOutlet.textColor = theme.textsColor
-        self.totalLabel_Label.textColor = theme.textsColor
-        
-        
-        //button
-        self.resetButtonOutlet.backgroundColor = theme.buttonsBG
-        
+          
+            // setting mode base on isDark bool
+            let theme = isDark ? ColorTheme.dark : ColorTheme.light
+            
+            //header
+            self.view.backgroundColor = theme.viewControllerBg
+            self.headerUIView.backgroundColor = theme.headerBG
+            self.tipCalculatorLable.textColor = theme.textsColor
+            
+            //input
+            self.inputUIView.backgroundColor = theme.inPutView
+            self.billAmountIBOUTLET.textColor = theme.textsColor
+            self.tiIBOUTLET.textColor = theme.textsColor
+            self.seletedTipIBOutlet.tintColor = theme.tint
+            
+            //output
+            self.outputUIView.backgroundColor = theme.outPutView
+            self.outputUIView.layer.borderColor = theme.cgColor
+            self.tipAmountIBOutlet.textColor = theme.textsColor
+            self.tipAmount_AmountLabel.textColor = theme.textsColor
+            self.totalIBOutlet.textColor = theme.textsColor
+            self.totalLabel_Label.textColor = theme.textsColor
+            
+            
+            //button
+            self.resetButtonOutlet.backgroundColor = theme.buttonsBG
+            
         }
-   
+        
         
     }
     
     
-    
+    // turn isDark bool when this button is pressed.
     @IBAction func switch_ON_OFF(_ sender: UISwitch) {
         
         setThem(isDark: sender.isOn)
         
-        
-        
-       
+  
     }
     
     
     
-
+    
     
     
     
@@ -175,7 +154,7 @@ class HomeVc: UIViewController {
     // programmatic UIButton action call
     
     
-     @objc func buttonAction(sender: UIButton!) {
+    @objc func buttonAction(sender: UIButton!) {
         
         if self.amountEntered.isFirstResponder {
             self.amountEntered.resignFirstResponder()
@@ -183,14 +162,14 @@ class HomeVc: UIViewController {
         
         
         guard let billAmountText = amountEntered.text,
-              let billAmountDouble: Double = Double(billAmountText) else {
-            return
+            let billAmountDouble: Double = Double(billAmountText) else {
+                return
         }
         
         // rounding bill amount entered by user.
         let roundedBillAmount = (billAmountDouble).rounded()
         
-      
+        
         let tipPercent: Double
         
         switch seletedTipIBOutlet.selectedSegmentIndex {
@@ -208,8 +187,8 @@ class HomeVc: UIViewController {
         }
         
         // Tip Amount
-       let tipAmount = roundedBillAmount * tipPercent
-       let roundedTipAmount = (tipAmount).rounded()
+        let tipAmount = roundedBillAmount * tipPercent
+        let roundedTipAmount = (tipAmount).rounded()
         
         // Total Amont
         let totalAmount = roundedBillAmount + roundedTipAmount
@@ -221,7 +200,7 @@ class HomeVc: UIViewController {
         self.totalLabel_Label.text = "$ \(totalAmount)"
         
         
-        }
+    }
     
     
     // reset clear function
@@ -242,14 +221,14 @@ class HomeVc: UIViewController {
     @IBAction func resetPress(_ sender: UIButton) {
         
         clear()
-
-    }
-        
-        
-        
-       
         
     }
+    
+    
+    
+    
+    
+}
 
 
 
