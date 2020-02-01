@@ -2,7 +2,7 @@
 //  HomeVc.swift
 //  TipCalculator
 //
-//  Created by Mohammed Drame on 12/1/18.
+//  Created by Mohammed Drame on 01/30/20.
 //  Copyright © 2018 Mohammed Drame. All rights reserved.
 //
 
@@ -67,7 +67,7 @@ class HomeVc: UIViewController {
     @IBOutlet var totalLabel_Label: UILabel!
     @IBOutlet weak var resetButtonOutlet: UIButton!
     
-
+    
     
     // = = = = = = = = UIButtons and UISwitch IBActions = = =  = = = = = = = = = = = =  =
     
@@ -75,7 +75,7 @@ class HomeVc: UIViewController {
         
         
         UIView.animate(withDuration: 0.5) {
-          
+            
             // setting mode base on isDark bool
             let theme = isDark ? ColorTheme.dark : ColorTheme.light
             
@@ -113,7 +113,7 @@ class HomeVc: UIViewController {
         
         setThem(isDark: sender.isOn)
         
-  
+        
     }
     
     
